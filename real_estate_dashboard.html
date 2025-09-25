@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Real Estate Investment Dashboard - Ames, Iowa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@^1.1/dist/chartjs-chart-matrix.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .chart-container {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+        .kpi-card {
+            border-left: 4px solid #10b981; /* Emerald green accent */
+        }
+        .chart-title {
+            text-align: center;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 lg:p-8">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <header class="pb-6 border-b border-gray-200">
+            <h1 class="text-3xl font-bold text-gray-900">Comprehensive Real Estate Investment Dashboard</h1>
+            <p class="mt-1 text-md text-gray-600">Using Machine Learning to Identify Undervalued Properties in Ames, Iowa.</p>
+        </header>
+
+        <!-- KPIs Section -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+             <div class="bg-white p-5 rounded-lg shadow kpi-card">
+                <h3 class="text-sm font-medium text-gray-500">Model Accuracy (R²)</h3>
+                <p class="mt-2 text-3xl font-bold text-gray-900">88%</p>
+            </div>
+            <div class="bg-white p-5 rounded-lg shadow kpi-card">
+                <h3 class="text-sm font-medium text-gray-500">Median Home Value</h3>
+                <p class="mt-2 text-3xl font-bold text-gray-900">$163,000</p>
+            </div>
+            <div class="bg-white p-5 rounded-lg shadow kpi-card">
+                <h3 class="text-sm font-medium text-gray-500">Undervalued Properties</h3>
+                <p class="mt-2 text-3xl font-bold text-gray-900">25 Identified</p>
+            </div>
+            <div class="bg-white p-5 rounded-lg shadow kpi-card">
+                <h3 class="text-sm font-medium text-gray-500">Top Investment Area</h3>
+                <p class="mt-2 text-3xl font-bold text-gray-900">Northridge</p>
+            </div>
+        </div>
+        
+        <!-- Section: Model Insights -->
+        <div class="mt-8">
+            <h2 class="text-2xl font-bold text-gray-800 border-l-4 border-emerald-500 pl-3">Model Insights</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-4">
+                 <div class="bg-white p-6 rounded-lg shadow lg:col-span-1">
+                    <h3 class="chart-title">Key Drivers of House Price</h3>
+                    <div class="chart-container !h-[350px]"><canvas id="featureImportanceChart"></canvas></div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow lg:col-span-2">
+                    <h3 class="chart-title">Model Performance: Predicted vs. Actual Price</h3>
+                    <div class="chart-container !h-[350px]"><canvas id="modelPerformanceChart"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Market & Price Trends -->
+        <div class="mt-8">
+            <h2 class="text-2xl font-bold text-gray-800 border-l-4 border-emerald-500 pl-3">Market & Price Trends</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4">
+                 <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="chart-title">Median Sale Price Over Time</h3>
+                    <div class="chart-container"><canvas id="priceTrendLineChart"></canvas></div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="chart-title">Average Sale Price by Neighborhood</h3>
+                    <div class="chart-container"><canvas id="neighborhoodPriceChart"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Property Characteristics Analysis -->
+        <div class="mt-8">
+             <h2 class="text-2xl font-bold text-gray-800 border-l-4 border-emerald-500 pl-3">Property Characteristics</h2>
+             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="chart-title">Distribution by Overall Quality</h3>
+                    <div class="chart-container"><canvas id="qualityDonutChart"></canvas></div>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="chart-title">Distribution by House Style</h3>
+                    <div class="chart-container"><canvas id="stylePieChart"></canvas></div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="chart-title">Properties by Sale Condition</h3>
+                    <div class="chart-container"><canvas id="saleConditionPolarChart"></canvas></div>
+                </div>
+             </div>
+             <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-6">
+                <div class="bg-white p-6 rounded-lg shadow lg:col-span-2">
+                    <h3 class="chart-title">Sales per Year by House Style</h3>
+                    <div class="chart-container"><canvas id="salesStackedColumnChart"></canvas></div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow lg:col-span-3">
+                    <h3 class="chart-title">Price vs. Living Area & Quality</h3>
+                    <div class="chart-container"><canvas id="priceBubbleChart"></canvas></div>
+                </div>
+             </div>
+        </div>
+        
+        <!-- Section: Advanced Analytics -->
+        <div class="mt-8">
+            <h2 class="text-2xl font-bold text-gray-800 border-l-4 border-emerald-500 pl-3">Advanced Analytics</h2>
+            <div class="grid grid-cols-1 gap-6 mt-4">
+                 <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="chart-title">Feature Correlation Matrix</h3>
+                    <div class="chart-container !h-[450px]"><canvas id="correlationMatrixChart"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Investment Opportunities -->
+        <div class="mt-8">
+            <h2 class="text-2xl font-bold text-gray-800 border-l-4 border-emerald-500 pl-3">Investment Opportunities</h2>
+            <div class="grid grid-cols-1 gap-6 mt-4">
+                 <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="chart-title">Top 10 Undervalued Properties</h3>
+                    <div class="chart-container !h-[500px]"><canvas id="undervaluedPropertiesChart"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const emeraldPalette = ['#047857', '#059669', '#10b981', '#34d399', '#6ee7b7', '#a7f3d0'];
+        
+        // --- DATA FOR CHARTS (Existing & New) ---
+        const featureImportanceData = { labels: ['Overall Quality', 'Living Area (SF)', 'Garage Cars', 'Basement (SF)', 'Neighborhood'], datasets: [{ label: 'Importance Score', data: [0.45, 0.25, 0.15, 0.10, 0.05], backgroundColor: emeraldPalette[2], }] };
+        const modelPerformanceData = { datasets: [{ label: 'Properties', data: [ {x: 180, y: 185}, {x: 220, y: 215}, {x: 150, y: 160}, {x: 310, y: 300}, {x: 120, y: 125}, {x: 400, y: 410}, {x: 250, y: 240}, {x: 175, y: 180}, {x: 280, y: 290}, {x: 350, y: 340}, {x: 200, y: 205}, {x: 140, y: 135}, ], backgroundColor: 'rgba(16, 185, 129, 0.6)' }] };
+        const undervaluedPropertiesData = { labels: ['123 Oak St', '456 Maple Dr', '789 Pine Ln', '321 Elm Ct', '654 Birch Rd', '987 Cedar Ave', '159 Spruce Way', '753 Aspen Blvd', '951 Willow St', '357 Cherry Cir'], datasets: [ { label: 'Actual Sale Price', data: [210, 185, 250, 150, 280, 220, 190, 310, 175, 240], backgroundColor: emeraldPalette[4], }, { label: 'Predicted Value', data: [255, 225, 300, 185, 330, 260, 225, 360, 205, 280], backgroundColor: emeraldPalette[1], } ] };
+        const neighborhoodPriceData = { labels: ['Northridge', 'Stone Brook', 'College Creek', 'Old Town', 'Edwards', 'Sawyer'], datasets: [{ label: 'Average Sale Price', data: [335, 310, 210, 128, 120, 135], backgroundColor: emeraldPalette }] };
+        const priceTrendLineData = { labels: ['2006', '2007', '2008', '2009', '2010'], datasets: [{ label: 'Median Sale Price', data: [160, 165, 168, 162, 170], borderColor: emeraldPalette[2], tension: 0.1, fill: false }] };
+        const qualityDonutData = { labels: ['Good (7-8)', 'Excellent (9-10)', 'Average (5-6)', 'Fair (3-4)', 'Poor (1-2)'], datasets: [{ data: [35, 10, 45, 8, 2], backgroundColor: emeraldPalette }] };
+        const stylePieData = { labels: ['1 Story', '2 Story', '1.5 Story Fin', 'Split Level', 'Other'], datasets: [{ data: [50, 25, 15, 7, 3], backgroundColor: emeraldPalette }] };
+        const salesStackedColumnData = { labels: ['2008', '2009', '2010'], datasets: [ { label: '1 Story', data: [120, 130, 125], backgroundColor: emeraldPalette[1] }, { label: '2 Story', data: [60, 55, 65], backgroundColor: emeraldPalette[3] }, { label: 'Other', data: [40, 35, 30], backgroundColor: emeraldPalette[5] } ] };
+        const priceBubbleData = { datasets: [ { label: 'Quality 5', data: [{x: 1000, y: 150, r: 5}, {x: 1200, y: 160, r: 5}] }, { label: 'Quality 7', data: [{x: 1500, y: 220, r: 10}, {x: 1700, y: 250, r: 10}] }, { label: 'Quality 9', data: [{x: 2200, y: 350, r: 15}, {x: 2500, y: 400, r: 15}] } ], };
+        const saleConditionPolarData = { labels: ['Normal', 'Partial', 'Abnormal', 'Family', 'Allotment'], datasets: [{ data: [80, 10, 5, 3, 2], backgroundColor: emeraldPalette }] };
+        const correlationMatrixData = { labels: ['SalePrice', 'OverallQual', 'GrLivArea', 'GarageCars', 'TotalBsmtSF'], datasets: [{ data: [ {x: 'SalePrice', y: 'SalePrice', v: 1}, {x: 'OverallQual', y: 'OverallQual', v: 1}, {x: 'GrLivArea', y: 'GrLivArea', v: 1}, {x: 'GarageCars', y: 'GarageCars', v: 1}, {x: 'TotalBsmtSF', y: 'TotalBsmtSF', v: 1}, {x: 'OverallQual', y: 'SalePrice', v: 0.79}, {x: 'GrLivArea', y: 'SalePrice', v: 0.71}, {x: 'GarageCars', y: 'SalePrice', v: 0.64}, {x: 'TotalBsmtSF', y: 'SalePrice', v: 0.61}, {x: 'GrLivArea', y: 'OverallQual', v: 0.59}, {x: 'GarageCars', y: 'OverallQual', v: 0.60}, ], backgroundColor: (ctx) => { const v = Math.abs(ctx.dataset.data[ctx.dataIndex].v); const alpha = (v - 0.5) / 0.5; return `rgba(5, 150, 105, ${alpha})`; }, width: ({chart}) => (chart.chartArea || {}).width / 5 - 1, height: ({chart}) => (chart.chartArea || {}).height / 5 - 1 }] };
+        
+
+        // --- CHART INITIALIZATION ---
+        window.onload = function() {
+            const baseChartOptions = { responsive: true, maintainAspectRatio: false };
+            
+            new Chart(document.getElementById('featureImportanceChart').getContext('2d'), { type: 'bar', data: featureImportanceData, options: { ...baseChartOptions, indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { title: { display: true, text: 'Relative Importance' } } } } });
+            new Chart(document.getElementById('modelPerformanceChart').getContext('2d'), { type: 'scatter', data: modelPerformanceData, options: { ...baseChartOptions, plugins: { legend: { display: false } }, scales: { x: { title: { display: true, text: 'Actual Sale Price (in thousands)' }, ticks: { callback: (value) => '$' + value + 'k' } }, y: { title: { display: true, text: 'Predicted Sale Price (in thousands)' }, ticks: { callback: (value) => '$' + value + 'k' } } } } });
+            new Chart(document.getElementById('priceTrendLineChart').getContext('2d'), { type: 'line', data: priceTrendLineData, options: { ...baseChartOptions, plugins: { legend: { display: false } }, scales: { y: { title: { display: true, text: 'Median Price' }, ticks: { callback: (value) => '$' + value + 'k' } } } } });
+            new Chart(document.getElementById('neighborhoodPriceChart').getContext('2d'), { type: 'bar', data: neighborhoodPriceData, options: { ...baseChartOptions, plugins: { legend: { display: false } }, scales: { y: { title: { display: true, text: 'Average Sale Price' }, ticks: { callback: (value) => '$' + value + 'k' } } } } });
+            new Chart(document.getElementById('qualityDonutChart').getContext('2d'), { type: 'doughnut', data: qualityDonutData, options: { ...baseChartOptions, plugins: { legend: { position: 'bottom' } } } });
+            new Chart(document.getElementById('stylePieChart').getContext('2d'), { type: 'pie', data: stylePieData, options: { ...baseChartOptions, plugins: { legend: { position: 'bottom' } } } });
+            new Chart(document.getElementById('salesStackedColumnChart').getContext('2d'), { type: 'bar', data: salesStackedColumnData, options: { ...baseChartOptions, scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: 'Number of Sales' } } } } });
+            new Chart(document.getElementById('priceBubbleChart').getContext('2d'), { type: 'bubble', data: priceBubbleData, options: { ...baseChartOptions, plugins: { legend: { position: 'bottom' } }, scales: { x: { title: { text: 'Living Area (Sq. Ft.)' } }, y: { title: { text: 'Sale Price (in thousands)' }, ticks: { callback: (v) => '$'+v+'k' } } } }});
+            new Chart(document.getElementById('saleConditionPolarChart').getContext('2d'), { type: 'polarArea', data: saleConditionPolarData, options: { ...baseChartOptions, plugins: { legend: { position: 'bottom' } } } });
+            new Chart(document.getElementById('correlationMatrixChart').getContext('2d'), { type: 'matrix', data: correlationMatrixData, options: { ...baseChartOptions, plugins: { legend: { display: false }, tooltip: { callbacks: { title: () => '', label: (c) => `${c.dataset.data[c.dataIndex].x} & ${c.dataset.data[c.dataIndex].y}: ${c.dataset.data[c.dataIndex].v.toFixed(2)}` } } }, scales: { x: { type: 'category', labels: correlationMatrixData.labels, ticks: { display: true } }, y: { type: 'category', labels: correlationMatrixData.labels, offset: true, ticks: { display: true } } } } });
+            new Chart(document.getElementById('undervaluedPropertiesChart').getContext('2d'), { type: 'bar', data: undervaluedPropertiesData, options: { ...baseChartOptions, indexAxis: 'y', plugins: { legend: { position: 'top' } }, scales: { x: { title: { display: true, text: 'Price (in thousands)' }, ticks: { callback: (value) => '$' + value + 'k' } } } } });
+        };
+    </script>
+</body>
+</html>
+
