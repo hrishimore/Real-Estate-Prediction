@@ -73,4 +73,4 @@ Web & Visualization: HTML, Tailwind CSS, JavaScript, Chart.js
 Spreadsheet: MS Excel
 
 Link to Live Dashboard
-View the Live Real Estate Dashboard Here
+[View the Live Real Estate Dashboard Here](https://hrishimore.github.io/Real-Estate-Prediction/real_estate_dashboard.html)
