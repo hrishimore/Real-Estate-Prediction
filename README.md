@@ -1,20 +1,21 @@
-Real Estate Price Prediction & Investment Analysis
-Table of Contents
-Business Objective
+# Real Estate Price Prediction & Investment Analysis
+Table of Contents:
 
-Data Source
-
-Methodology
-
-Key Findings & Visualizations
-
-Investment Strategy Recommendations
-
-How to Run This Project
-
-Tools Used
-
-Link to Live Dashboard
+  Business Objective
+  
+  Data Source
+  
+  Methodology
+  
+  Key Findings & Visualizations
+  
+  Investment Strategy Recommendations
+  
+  How to Run This Project
+  
+  Tools Used
+  
+  Link to Live Dashboard
 
 Business Objective
 The goal of this project is to empower a real estate investment firm to move beyond traditional valuation methods and leverage data science for a competitive edge. By building a robust machine learning model, we can accurately predict the market value of properties in Ames, Iowa. The primary objective is to use this model to systematically identify undervalued properties, thereby highlighting the most promising data-driven investment opportunities.
